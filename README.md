@@ -1,36 +1,58 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Personal portfolio
 
-## Getting Started
+Bilingual (English / Arabic) portfolio with an interactive WebGL hero.
+Next.js App Router, React, TypeScript, Tailwind CSS, Three.js (`@react-three/fiber`), Framer Motion, Lenis.
 
-First, run the development server:
+## Run it
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev          # http://localhost:3000
+npm run build        # production build, also type-checks
+npm run start        # serve the production build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## URL switches
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| URL | What it does |
+|---|---|
+| `/` | The full personal site: contact section with LinkedIn, GitHub and (if set) email. |
+| `/?lang=ar` or `/?lang=en` | Opens in that language. The header switch does the same and remembers the choice. |
+| `/?showcase=true` | Marketplace mode. Every personal contact route is removed: no email, no LinkedIn, no GitHub, no external product link. The hero button becomes "View the work". Use this mode for screenshots uploaded to Mostaql, Upwork or Khamsat. |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Contact details
 
-## Learn More
+Edit `lib/site.ts`. The email is read from an environment variable so it never sits in the repository:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+# .env.local  (or Vercel > Project > Settings > Environment Variables)
+NEXT_PUBLIC_CONTACT_EMAIL=you@example.com
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Without it the "Write to me" button is not rendered and the contact section shows LinkedIn and GitHub only.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Where things live
+
+| Path | What |
+|---|---|
+| `lib/projects.ts` | Every project: bilingual copy, stack, images, category. Add a project here. |
+| `lib/app-state.tsx` | Language, direction and showcase mode (one small store, no context provider). |
+| `components/hero-scene.tsx` | The 3D sculpture: geometry, material, studio lighting, pointer and scroll response. |
+| `components/hero.tsx` | Headline reveal, CTA, and the drawn fallback for devices without WebGL. |
+| `components/work.tsx` | Featured case, filters, bento grid with tilt and glare. |
+| `components/case-drawer.tsx` | The case study panel. |
+| `components/bounty-console.tsx` | The Bounty Agents console visualisation. |
+| `public/work/` | Project screenshots. |
 
 ## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Import the folder as a project. No configuration is needed: the framework preset is Next.js and the page is prerendered as static content. Add `NEXT_PUBLIC_CONTACT_EMAIL` if you want the email button.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Screenshots for the marketplaces
+
+With the production server on port 3100 (`npx next start -p 3100`), from `../tools`:
+
+```bash
+node portfolio-site-capture.mjs   # writes portfolio-ready/05-personal-portfolio/images and audits for contact details
+node portfolio-site-check.mjs     # language switch, filters, drawer, showcase mode, reduced motion, no-WebGL fallback
+```
