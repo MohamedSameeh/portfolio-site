@@ -1,5 +1,7 @@
 # Personal portfolio
 
+Live: https://mohamedsameeh.vercel.app
+
 Bilingual (English / Arabic) portfolio with an interactive WebGL hero.
 Next.js App Router, React, TypeScript, Tailwind CSS, Three.js (`@react-three/fiber`), Framer Motion, Lenis.
 
@@ -41,6 +43,7 @@ Without it the "Write to me" button is not rendered and the contact section show
 | `components/hero.tsx` | Headline reveal, CTA, and the drawn fallback for devices without WebGL. |
 | `components/work.tsx` | Featured case, filters, bento grid with tilt and glare. |
 | `components/case-drawer.tsx` | The case study panel. |
+| `components/about.tsx` | About section with the portrait (`public/me/portrait.jpg`). |
 | `components/bounty-console.tsx` | The Bounty Agents console visualisation. |
 | `public/work/` | Project screenshots. |
 

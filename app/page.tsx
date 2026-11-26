@@ -1,3 +1,4 @@
+import { About } from "@/components/about";
 import { Capabilities } from "@/components/capabilities";
 import { Contact } from "@/components/contact";
 import { Hero } from "@/components/hero";
@@ -18,6 +19,7 @@ export default function Home() {
         <Capabilities />
         <Work />
         <Process />
+        <About />
         <Contact />
       </main>
     </>

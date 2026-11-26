@@ -10,6 +10,7 @@ const links: { href: string; label: L }[] = [
   { href: "#work", label: { en: "Work", ar: "الأعمال" } },
   { href: "#capabilities", label: { en: "Capabilities", ar: "التخصصات" } },
   { href: "#process", label: { en: "Process", ar: "طريقة العمل" } },
+  { href: "#about", label: { en: "About", ar: "عنّي" } },
   { href: "#contact", label: { en: "Contact", ar: "تواصل" } },
 ];
 
